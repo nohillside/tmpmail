@@ -13,7 +13,12 @@ browser="w3m"
 
 # The default command that will be used to copy the email address to
 # the user's clipboard when running 'tmpmail --copy'
-copy_to_clipboard_cmd="xclip -selection c"
+case $(uname) in
+  Linux) copy_to_clipboard_cmd="xclip -selection c"
+         ;;
+  Darwin) copy_to_clipboard_cmd="pbcopy"
+          ;;
+esac
 
 # If the value is set to 'true' tmpmail will convert the HTML email
 # to raw text and send that to stdout
